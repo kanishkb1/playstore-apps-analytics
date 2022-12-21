@@ -17,6 +17,7 @@ dataframe = pd.read_csv('playstore_analysis.csv')
 dataframe = preprocess.run(dataframe)
 #instance of Dash class
 app= dash.Dash()
+server = app.server
 
 temp = dataframe.groupby('Category').agg( {"Installs":"sum"}).reset_index()
 temp.sort_values(by=['Installs'], inplace=True, ascending=False)
