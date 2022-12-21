@@ -16,7 +16,7 @@ dataframe = pd.read_csv('playstore_analysis.csv')
 
 dataframe = preprocess.run(dataframe)
 #instance of Dash class
-app_instance= dash.Dash()
+app= dash.Dash()
 
 temp = dataframe.groupby('Category').agg( {"Installs":"sum"}).reset_index()
 temp.sort_values(by=['Installs'], inplace=True, ascending=False)
@@ -32,7 +32,7 @@ pieplotfig.add_trace(go.Pie(
 pieplotfig.update_layout(margin={'l': 40, 'b': 40, 't': 10, 'r': 40},bargap=0.05, autosize=True)
 
 
-app_instance.layout = html.Div([
+app.layout = html.Div([
     html.Div([
         html.H3('Data-Centric Dashboard', style={'textAlign': 'center'})],
         style={'width': '100%', 'display': 'inline-block'}),
@@ -87,7 +87,7 @@ app_instance.layout = html.Div([
 #End of application's layout
 ])
 
-@app_instance.callback(
+@app.callback(
 Output(component_id='version-graphic', component_property='figure'),
 Input(component_id='version-slider', component_property='value')
 )
@@ -104,7 +104,7 @@ def update_graph(version_number):
     fig.update_yaxes(title = "Categories")
     return fig
 
-@app_instance.callback(
+@app.callback(
 Output(component_id='indicator-graphic',
     component_property='figure'),
 Output(component_id='installs-graphic',
@@ -144,7 +144,7 @@ def update_graph(xaxis_column_name):
     fig2.update_yaxes(title="Number of Apps")
     return fig1, fig2
 
-@app_instance.callback(
+@app.callback(
 Output(component_id='scatterplot_variable',
     component_property='figure'),
 Input(component_id='xaxis-var',
@@ -165,5 +165,5 @@ def update_graph(xaxis,yaxis):
     return fig
 
 if __name__ == '__main__':
-  app_instance.run_server(debug=True, host='0.0.0.0', port=8501)
+  app.run_server(debug=True, host='0.0.0.0', port=8501)
 
