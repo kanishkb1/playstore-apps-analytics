@@ -31,7 +31,7 @@ Live Project Link :  <https://playstore-apps-analytics.onrender.com>
 ## How to use ?
 
 * To run on terminal, launch the flask application by following command-
-`streamlit streamlit_app.py`
+`python dash_app.py`
 
 * The launched app will start and navigate to a link. Open the link in browser (localhost).
 
