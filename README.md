@@ -22,6 +22,8 @@ Live Project Link :  <https://playstore-apps-analytics.onrender.com>
 * Numpy
 * Matplolib
 * Pandas
+* Plotly
+* Gunicorn
 * Dash
 * Render Cloud
 
